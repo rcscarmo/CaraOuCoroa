@@ -12,8 +12,9 @@ pygame.init()
 pygame.mixer.init() 
 
 # tela
-LARGURA, ALTURA = 1023, 768
+LARGURA, ALTURA = 1024, 768
 screen = pygame.display.set_mode((LARGURA, ALTURA))
+# screen = pygame.display.set_mode((LARGURA, ALTURA), pygame.SCALED|pygame.FULLSCREEN)
 pygame.display.set_caption("Cara ou Coroa")
 clock = pygame.time.Clock()
 
@@ -90,7 +91,7 @@ while running:
 
         texto = fonte.render(resultado, True, "white")
         texto.set_alpha(alpha_texto)
-        texto_rect = texto.get_rect(center=(LARGURA // 2, ALTURA // 2 + 200))
+        texto_rect = texto.get_rect(center=(LARGURA // 2, ALTURA // 2 + 210))
         screen.blit(texto, texto_rect)
 
     pygame.display.flip()
