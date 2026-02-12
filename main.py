@@ -1,3 +1,4 @@
+import os
 import pygame
 import random
 
@@ -19,12 +20,22 @@ pygame.display.set_caption("Cara ou Coroa")
 clock = pygame.time.Clock()
 
 # imagens
-moeda_frente = pygame.image.load(f"./images/moedas/{moeda}_1.png").convert_alpha()
-moeda_verso = pygame.image.load(f"./images/moedas/{moeda}_2.png").convert_alpha()
+try:
+    moeda_frente = pygame.image.load(
+        os.path.join("images", "moedas", f"{moeda}_1.png")
+    ).convert_alpha()
+    moeda_verso = pygame.image.load(
+        os.path.join("images", "moedas", f"{moeda}_2.png")
+    ).convert_alpha()
+except pygame.error as exc:
+    raise SystemExit(f"Falha ao carregar imagens da moeda: {exc}") from exc
 
 # som
-som_moeda = pygame.mixer.Sound("./sfx/coin.wav")
-som_moeda.set_volume(1.0)
+try:
+    som_moeda = pygame.mixer.Sound(os.path.join("sfx", "coin.wav"))
+    som_moeda.set_volume(0.5)
+except pygame.error as exc:
+    raise SystemExit(f"Falha ao carregar som da moeda: {exc}") from exc
 
 # fonte
 fonte = pygame.font.SysFont(None, 72)
@@ -47,6 +58,8 @@ running = True
 while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
+            running = False
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
             running = False
 
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:

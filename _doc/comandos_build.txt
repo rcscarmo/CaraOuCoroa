@@ -1,0 +1,30 @@
+sudo apt update
+sudo apt install -y \
+  python3 python3-venv python3-pip \
+  openjdk-17-jdk \
+  git zip unzip \
+  build-essential \
+  libffi-dev libssl-dev \
+  libsqlite3-dev zlib1g-dev \
+  libbz2-dev liblzma-dev \
+  libncurses5-dev libncursesw5-dev \
+  libreadline-dev libgdbm-dev \
+  libjpeg-dev libtiff-dev \
+  libfreetype6-dev libpng-dev \
+  libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-ttf-dev \
+  libgl1-mesa-dev libgles2-mesa-dev
+===============================================================================
+pip install buildozer
+===============================================================================
+buildozer init
+===============================================================================
+title = Cara ou Coroa
+package.name = caraoucoroa
+package.domain = org.seuusuario
+source.dir = .
+source.include_exts = py,png,wav
+requirements = python3,pygame
+orientation = portrait
+===============================================================================
+buildozer -v android debug/release
+===============================================================================
